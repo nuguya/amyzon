@@ -6,11 +6,11 @@ item2 = {
   img: "./images/minions2",
   text: "반갑습니다"
 };
-item1 = {
+item3 = {
   img: "./images/minions3",
   text: "잘가세요"
 };
-item1 = {
+item4 = {
   img: "./images/minions4",
   text: "다시만나요"
 };

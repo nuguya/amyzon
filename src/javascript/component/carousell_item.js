@@ -1,12 +1,11 @@
 const carousellItem = (previewImage, text) => {
-  return `<div class="carousell__contents">
-    <div id="image-preview">
-      <img src=${previewImage}.jpg>
-    </div>
-  </div>
+  return `<li class="carousell__item">
+      <img src=${previewImage}.jpg class="previewImage">
+    
   <div class="carousell_texts">
-    <h1>${text}</h1>
-  </div>`;
+    <p>${text}</p>
+    </div>
+  </li>`;
 };
 
 module.exports = carousellItem;
