@@ -1,0 +1,31 @@
+{
+  "name": "membership-amazon",
+  "version": "1.0.0",
+  "description": "boostcamp membership week3",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nuguya/membership-amazon.git"
+  },
+  "keywords": [
+    "amazon"
+  ],
+  "author": "guenyoung kim",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nuguya/membership-amazon/issues"
+  },
+  "homepage": "https://github.com/nuguya/membership-amazon#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "css-loader": "^3.2.0",
+    "node-sass": "^4.12.0",
+    "sass-loader": "^8.0.0",
+    "style-loader": "^1.0.0",
+    "webpack": "^4.40.2",
+    "webpack-cli": "^3.3.8"
+  }
+}
