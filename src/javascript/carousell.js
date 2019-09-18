@@ -13,8 +13,9 @@ class Carousell {
     this.container = container;
     this.itemList = itemList;
     this.init();
-    this.Config(rotateConfig, 1);
+    this.config(rotateConfig, 1);
     this.intervalId = undefined;
+    this.sleepCheckId = undefined;
   }
 
   init() {
@@ -39,15 +40,21 @@ class Carousell {
     this.container.addEventListener(
       "click",
       function(e) {
-        console.log(this.intervalId);
+        if (this.sleepCheckId !== undefined) {
+          clearTimeout(this.sleepCheckId);
+        }
         if (this.intervalId !== undefined) {
           clearInterval(this.intervalId);
+          this.sleepCheckId = setTimeout(() => {
+            this.moveNext();
+            this.autoSlide();
+          }, 10000);
         }
       }.bind(this)
     );
   }
 
-  Config(rotateConfig, duration) {
+  config(rotateConfig, duration) {
     this.duration = duration;
     if (rotateConfig) {
       const firstItem = this.itemList.childNodes[INIT];
