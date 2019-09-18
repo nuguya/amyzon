@@ -1,9 +1,13 @@
+const cardList = require("../data/data");
+const cardListView = require("./component/cardlist");
+
 (function() {
   const main = document.querySelector(".contents");
-  const { primeContainer, categoryCard, crousellContainer } = initMain(main);
+  const { primeContainer, categoryCard, crousellContainer } = buildMain(main);
+  const { cardNames, cardDetails } = getCardListValue(cardList);
 })();
 
-function bulldMain(main) {
+function buildMain(main) {
   const primeContainer = document.createElement("div");
   const categoryCard = document.createElement("div");
   const crousellContainer = document.createElement("div");
@@ -21,4 +25,20 @@ function bulldMain(main) {
     categoryCard: categoryCard,
     crousellContainer: crousellContainer
   };
+}
+
+function getCardListValue(cardListData) {
+  const cardNames = cardListData.map(cur => {
+    return cur.name;
+  });
+  const cardDetails = cardListData.map(cur => {
+    return cur.feature;
+  });
+  return { cardNames, cardDetails };
+}
+
+function renderCardList(parent, view, data) {}
+
+function render(target, component) {
+  target.innerHtml = component;
 }
