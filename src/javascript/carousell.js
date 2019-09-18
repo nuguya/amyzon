@@ -37,21 +37,7 @@ class Carousell {
         this.Istransition = false;
       }.bind(this)
     );
-    this.container.addEventListener(
-      "click",
-      function(e) {
-        if (this.sleepCheckId !== undefined) {
-          clearTimeout(this.sleepCheckId);
-        }
-        if (this.intervalId !== undefined) {
-          clearInterval(this.intervalId);
-          this.sleepCheckId = setTimeout(() => {
-            this.moveNext();
-            this.autoSlide();
-          }, 10000);
-        }
-      }.bind(this)
-    );
+    this.container.addEventListener("click", this.stopSlide.bind(this));
   }
 
   config(rotateConfig, duration) {
@@ -114,6 +100,19 @@ class Carousell {
     this.intervalId = setInterval(() => {
       this.moveNext();
     }, 3000);
+  }
+
+  stopSlide() {
+    if (this.sleepCheckId !== undefined) {
+      clearTimeout(this.sleepCheckId);
+    }
+    if (this.intervalId !== undefined) {
+      clearInterval(this.intervalId);
+      this.sleepCheckId = setTimeout(() => {
+        this.moveNext();
+        this.autoSlide();
+      }, 10000);
+    }
   }
 }
 
