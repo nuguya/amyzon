@@ -4,6 +4,7 @@ $contentsLeftMargin: 5rem;
 
 .carousell {
   display: flex;
+  justify-content: center;
   border: 1px dotted green;
 }
 
@@ -14,24 +15,31 @@ $contentsLeftMargin: 5rem;
   width: $imageSize;
   height: $imageSize;
   box-shadow: 2px 2px 3px 2px;
-}
-
-.carousell__list {
-  display: flex;
-}
-
-.carousell__item {
-  img {
-    max-width: $imageSize;
-    max-height: $imageSize;
-    height: 100%;
+  .carousell__list {
+    display: flex;
+    .carousell__item {
+      img {
+        max-width: $imageSize;
+        max-height: $imageSize;
+        height: 100%;
+        vertical-align: top;
+      }
+    }
   }
 }
 
 .carousell__textarea {
   @extend #leftbtn;
   max-width: $textAreaSize;
+
+  .carousell__navigation {
+    font-weight: bold;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 }
+
 #leftbtn {
   margin-left: $contentsLeftMargin;
 }

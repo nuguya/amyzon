@@ -35,8 +35,8 @@ function renderCarousell(itemList) {
 
   currentItem.forEach(cur => {
     let previewImg = cur.img;
-    let text = cur.text;
-    renderView += carousellItem(previewImg, text);
+    let link = cur.link;
+    renderView += carousellItem(previewImg, link);
   });
   itemList.innerHTML = renderView;
 }
