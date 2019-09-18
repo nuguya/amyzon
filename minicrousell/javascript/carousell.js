@@ -45,7 +45,6 @@ class Carousell {
     if (rotateConfig) {
       const firstItem = this.itemList.childNodes[INIT];
       const lastItem = this.itemList.childNodes[this.itemLength - 1];
-
       this.itemList.insertBefore(lastItem.cloneNode(true), this.itemList.firstChild);
       this.itemList.appendChild(firstItem.cloneNode(true));
       this.offset -= this.itemListWidth;
