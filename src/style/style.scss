@@ -14,7 +14,7 @@ li {
 
 .carousell__list {
   display: flex;
-  transition: transform 1s;
+  transition: transform 0.2s ease-in-out;
 }
 
 .carousell__item {

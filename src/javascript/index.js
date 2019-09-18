@@ -12,7 +12,8 @@ const Data = require("../data/data.js");
   render(itemList);
 
   window.addEventListener("load", function() {
-    carousell = new Carousell(container, itemList);
+    carousell = new Carousell(container, itemList, true);
+    carousell.autoSlide();
   });
 
   // console.log(container.offsetHeight);
