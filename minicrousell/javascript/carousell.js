@@ -56,6 +56,12 @@ class Carousell {
     }
   }
 
+  setConfig(isRotate, duration) {
+    this.isRotate = isRotate;
+    this.duration = duration;
+    this.config(isRotate, duration);
+  }
+
   moveNext() {
     if (this.Istransition) return;
     this.offset -= this.itemListWidth;

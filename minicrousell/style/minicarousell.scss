@@ -1,0 +1,37 @@
+$imageSize: 15rem;
+$textAreaSize: 25rem;
+$contentsLeftMargin: 5rem;
+
+.carousell {
+  display: flex;
+  border: 1px dotted green;
+}
+
+.carousell__container {
+  position: relative;
+  margin: 1em;
+  overflow: hidden;
+  width: $imageSize;
+  height: $imageSize;
+  box-shadow: 2px 2px 3px 2px;
+}
+
+.carousell__list {
+  display: flex;
+}
+
+.carousell__item {
+  img {
+    max-width: $imageSize;
+    max-height: $imageSize;
+    height: 100%;
+  }
+}
+
+.carousell__textarea {
+  @extend #leftbtn;
+  max-width: $textAreaSize;
+}
+#leftbtn {
+  margin-left: $contentsLeftMargin;
+}
