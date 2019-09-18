@@ -5,6 +5,8 @@ const cardListView = require("./component/cardlist");
   const main = document.querySelector(".contents");
   const { primeContainer, categoryCard, crousellContainer } = buildMain(main);
   const { cardNames, cardDetails } = getCardListValue(cardList);
+
+  renderCardUi(categoryCard, cardListView, cardNames);
 })();
 
 function buildMain(main) {
@@ -37,8 +39,14 @@ function getCardListValue(cardListData) {
   return { cardNames, cardDetails };
 }
 
-function renderCardList(parent, view, data) {}
+function renderCardUi(target, view, data) {
+  const cardUiView = data.reduce((acc, cur) => {
+    acc += view(cur);
+    return acc;
+  }, "");
+  render(target, cardUiView);
+}
 
 function render(target, component) {
-  target.innerHtml = component;
+  target.innerHTML = component;
 }
