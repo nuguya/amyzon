@@ -60,6 +60,9 @@ $tabButtonSize: 0.5rem;
           height: $tabButtonSize;
           border-radius: 15px;
           margin: 3px;
+          color: white;
+          background: white;
+          opacity: 0.5;
         }
       }
       @at-root #Ship-card {
