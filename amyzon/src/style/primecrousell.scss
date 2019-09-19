@@ -1,8 +1,11 @@
-.primecarousell__item {
+.primecrousell__container {
   display: flex;
-  .prime__image {
-    img {
-      max-width: 500px;
+  .primecarousell__item {
+    display: flex;
+    .prime__image {
+      img {
+        max-width: 500px;
+      }
     }
   }
 }

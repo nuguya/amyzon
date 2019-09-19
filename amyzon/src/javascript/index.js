@@ -58,7 +58,8 @@ function renderPrimeCrousellUi(target, view, data) {
     acc += view(cur);
     return acc;
   }, "");
-  render(target, crousellUiView);
+  let temp = `<div class="primecrousell__container">${crousellUiView}</div>`;
+  render(target, temp);
 }
 
 function renderCardUi(target, view, data) {
