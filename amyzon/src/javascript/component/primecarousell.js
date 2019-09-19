@@ -1,6 +1,5 @@
-const primeCarousellItem = data => {
-  return `<li class="primecarousell__item">
-  <div class="prime__image"><img src="${data.image}"></div>
+const primeCarousellItem = (data, count) => {
+  return `<li class="primecarousell__item" id="prime_item${count}">
   <div class="prime__section">
     <div class="prime__section__title">${data.title}</div>
     <div class="prime__section__head">${data.head}</div>
