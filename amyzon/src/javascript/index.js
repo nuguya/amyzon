@@ -1,7 +1,7 @@
 require("../style/style.scss");
 const cardList = require("../data/data");
 const cardListView = require("./component/cardlist");
-
+console.log(cardList);
 (function() {
   const main = document.querySelector(".contents");
   const { primeContainer, categoryCard, crousellContainer } = buildMain(main);
@@ -36,15 +36,20 @@ function buildMain(main) {
 }
 
 function getCardListValue(cardListData) {
-  const cardNames = cardListData.map(cur => {
-    return cur.name;
-  });
+  const cardNames = [];
+  let idx = 0;
+  for (let i in cardListData) {
+    cardNames.push(Object.keys(cardListData[i])[0]);
+  }
+  console.log(cardNames);
   const cardDetails = cardListData.map(cur => {
-    return cur.feature;
+    return cur[cardNames[idx++]];
   });
+  console.log(cardDetails);
   const cardImages = cardListData.map(cur => {
     return cur.image;
   });
+  console.log(cardImages);
 
   return { cardNames, cardDetails, cardImages };
 }
@@ -101,5 +106,6 @@ function addPaginationToCard(categoryCard, cardDetails) {
     for (let i = 0; i < cardDetails[idx].length; ++i)
       buttons += `<button class="pagination_button" data-page="${count++}"></button>`;
     element.childNodes[0].childNodes[1].innerHTML = buttons;
+    ++idx;
   });
 }
