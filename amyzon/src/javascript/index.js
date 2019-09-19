@@ -2,38 +2,56 @@ require("../style/style.scss");
 const cardList = require("../data/data");
 const cardListView = require("./component/cardlist");
 const primeCarousellItem = require("./component/primecarousell");
+const primeCarousellContainer = require("./component/primecarousellcontainer");
+const Carousell = require("./carousell");
+
 (function() {
   const main = document.querySelector(".contents");
-  const { primeContainer, categoryCard, crousellContainer } = buildMain(main);
+  const { primeContainer, categoryCard, carousellContainer } = buildMain(main);
   const { cardNames, cardDetails, cardImages } = getCardListValue(cardList);
 
   /*카드 만드는 부분*/
   renderCardUi(categoryCard, cardListView, cardNames);
-  renderPrimeCrousellUi(crousellContainer, primeCarousellItem, cardDetails.flat());
   setCardImage(categoryCard.childNodes, cardImages);
   setCardTitle(categoryCard.childNodes, cardNames);
   addPaginationToCard(categoryCard.childNodes, cardDetails);
   setCardClickEvent(categoryCard.childNodes);
-  console.log(cardDetails.flat());
+
+  /*크로셀 만드는 부분 */
+  renderPrimeCarousellUi(carousellContainer, primeCarousellItem, cardDetails.flat());
+  window.addEventListener("load", function() {
+    const itemList = document.querySelector(".primecarousell__itemlist");
+    const container = document.querySelector(".primecarousell__container");
+
+    setCarousellImage(itemList, cardDetails.flat());
+    craousell = new Carousell(container, itemList, true);
+  });
+
+  const leftButton = document.querySelector("#leftbtn");
+  const rightButton = document.querySelector("#rightbtn");
+
+  rightButton.addEventListener("click", function() {
+    craousell.moveNext();
+  });
 })();
 
 function buildMain(main) {
   const primeContainer = document.createElement("div");
   const categoryCard = document.createElement("div");
-  const crousellContainer = document.createElement("div");
+  const carousellContainer = document.createElement("div");
 
-  primeContainer.classList.add("contents__primecroushell-container");
-  categoryCard.classList.add("contents__primecroushell-container__category-card");
-  crousellContainer.classList.add("contents__primecroushell-container__croushell");
+  primeContainer.classList.add("contents__primecaroushell-container");
+  categoryCard.classList.add("contents__primecaroushell-container__category-card");
+  carousellContainer.classList.add("contents__primecaroushell-container__caroushell");
 
   primeContainer.appendChild(categoryCard);
-  primeContainer.appendChild(crousellContainer);
   main.appendChild(primeContainer);
+  main.appendChild(carousellContainer);
 
   return {
     primeContainer: primeContainer,
     categoryCard: categoryCard,
-    crousellContainer: crousellContainer
+    carousellContainer: carousellContainer
   };
 }
 
@@ -53,13 +71,13 @@ function getCardListValue(cardListData) {
   return { cardNames, cardDetails, cardImages };
 }
 
-function renderPrimeCrousellUi(target, view, data) {
+function renderPrimeCarousellUi(target, view, data) {
+  let count = 1;
   const crousellUiView = data.reduce((acc, cur) => {
-    acc += view(cur);
+    acc += view(cur, count++);
     return acc;
   }, "");
-  let temp = `<div class="primecrousell__container">${crousellUiView}</div>`;
-  render(target, temp);
+  render(target, primeCarousellContainer(crousellUiView));
 }
 
 function renderCardUi(target, view, data) {
@@ -79,6 +97,16 @@ function setCardImage(categoryCard, cardImages) {
   if (categoryCard.length !== cardImages.length) return false;
   categoryCard.forEach(element => {
     element.childNodes[0].style.backgroundImage = `url("${cardImages[idx++]}")`;
+  });
+}
+
+function setCarousellImage(itemList, data) {
+  let idx = 0;
+  const images = data.map(cur => {
+    return cur.image;
+  });
+  itemList.childNodes.forEach(item => {
+    item.style.backgroundImage = `url("${images[idx++]}")`;
   });
 }
 
