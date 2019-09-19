@@ -1,7 +1,7 @@
 require("../style/style.scss");
 const cardList = require("../data/data");
 const cardListView = require("./component/cardlist");
-console.log(cardList);
+const primeCarousellItem = require("./component/primecarousell");
 (function() {
   const main = document.querySelector(".contents");
   const { primeContainer, categoryCard, crousellContainer } = buildMain(main);
@@ -9,10 +9,12 @@ console.log(cardList);
 
   /*카드 만드는 부분*/
   renderCardUi(categoryCard, cardListView, cardNames);
+  renderPrimeCrousellUi(crousellContainer, primeCarousellItem, cardDetails.flat());
   setCardImage(categoryCard.childNodes, cardImages);
   setCardTitle(categoryCard.childNodes, cardNames);
   addPaginationToCard(categoryCard.childNodes, cardDetails);
   setCardClickEvent(categoryCard.childNodes);
+  console.log(cardDetails.flat());
 })();
 
 function buildMain(main) {
@@ -41,17 +43,22 @@ function getCardListValue(cardListData) {
   for (let i in cardListData) {
     cardNames.push(Object.keys(cardListData[i])[0]);
   }
-  console.log(cardNames);
   const cardDetails = cardListData.map(cur => {
     return cur[cardNames[idx++]];
   });
-  console.log(cardDetails);
   const cardImages = cardListData.map(cur => {
     return cur.image;
   });
-  console.log(cardImages);
 
   return { cardNames, cardDetails, cardImages };
+}
+
+function renderPrimeCrousellUi(target, view, data) {
+  const crousellUiView = data.reduce((acc, cur) => {
+    acc += view(cur);
+    return acc;
+  }, "");
+  render(target, crousellUiView);
 }
 
 function renderCardUi(target, view, data) {
