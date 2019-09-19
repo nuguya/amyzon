@@ -14,7 +14,9 @@ const cardlist = [
         text: "짜증나",
         navi: "asdfafasdf"
       }
-    ]
+    ],
+    image:
+      "https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/InteractivePlane_TILES_SpriteSheet_A._CB513333159_.png"
   },
   {
     name: "Stream",
@@ -31,7 +33,9 @@ const cardlist = [
         text: "짜증나",
         navi: "asdfafasdf"
       }
-    ]
+    ],
+    image:
+      "https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/InteractivePlane_TILES_SpriteSheet_A._CB513333159_.png"
   },
   {
     name: "Shop",
@@ -48,7 +52,9 @@ const cardlist = [
         text: "짜증나",
         navi: "asdfafasdf"
       }
-    ]
+    ],
+    image:
+      "https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/InteractivePlane_TILES_SpriteSheet_A._CB513333159_.png"
   },
   {
     name: "Read",
@@ -65,7 +71,9 @@ const cardlist = [
         text: "짜증나",
         navi: "asdfafasdf"
       }
-    ]
+    ],
+    image:
+      "https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/InteractivePlane_TILES_SpriteSheet_A._CB513333159_.png"
   },
   {
     name: "More",
@@ -82,7 +90,9 @@ const cardlist = [
         text: "짜증나",
         navi: "asdfafasdf"
       }
-    ]
+    ],
+    image:
+      "https://images-na.ssl-images-amazon.com/images/G/01/marketing/prime/detail_page/InteractivePlane_TILES_SpriteSheet_A._CB513333159_.png"
   }
 ];
 
