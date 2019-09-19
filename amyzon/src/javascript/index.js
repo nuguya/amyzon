@@ -7,8 +7,11 @@ const cardListView = require("./component/cardlist");
   const { primeContainer, categoryCard, crousellContainer } = buildMain(main);
   const { cardNames, cardDetails, cardImages } = getCardListValue(cardList);
 
+  /*카드 만드는 부분*/
   renderCardUi(categoryCard, cardListView, cardNames);
   setCardImage(categoryCard.childNodes, cardImages);
+  setCardClickEvent(categoryCard.childNodes);
+  setCardTitle(categoryCard.childNodes, cardNames);
 })();
 
 function buildMain(main) {
@@ -62,5 +65,24 @@ function setCardImage(categoryCard, cardImages) {
   if (categoryCard.length !== cardImages.length) return false;
   categoryCard.forEach(element => {
     element.childNodes[0].style.backgroundImage = `url("${cardImages[idx++]}")`;
+  });
+}
+
+function setCardTitle(categoryCard, cardNames) {
+  let idx = 0;
+  if (categoryCard.length !== cardNames.length) return false;
+  categoryCard.forEach(element => {
+    element.childNodes[0].childNodes[0].innerHTML = `<p>${cardNames[idx++]}</p>`;
+  });
+}
+
+function setCardClickEvent(categoryCard) {
+  categoryCard.forEach(card => {
+    card.addEventListener("click", e => {
+      categoryCard.forEach(item => {
+        item.classList.remove("selected_card");
+      });
+      card.classList.add("selected_card");
+    });
   });
 }
