@@ -3,7 +3,7 @@ const cardList = require("../data/data");
 const cardListView = require("./component/cardlist");
 const primeCarousellItem = require("./component/primecarousell");
 const primeCarousellContainer = require("./component/primecarousellcontainer");
-const Carousell = require("./carousell");
+const PrimeCarousell = require("./primecarousell");
 
 (function() {
   const main = document.querySelector(".contents");
@@ -23,15 +23,19 @@ const Carousell = require("./carousell");
     const itemList = document.querySelector(".primecarousell__itemlist");
     const container = document.querySelector(".primecarousell__container");
 
+    init(categoryCard.childNodes);
     setCarousellImage(itemList, cardDetails.flat());
-    craousell = new Carousell(container, itemList, true);
+    primeCraousell = new PrimeCarousell(container, itemList, true);
   });
 
   const leftButton = document.querySelector("#leftbtn");
   const rightButton = document.querySelector("#rightbtn");
 
   rightButton.addEventListener("click", function() {
-    craousell.moveNext();
+    primeCraousell.moveNext();
+  });
+  leftButton.addEventListener("click", function() {
+    primeCraousell.movePrev();
   });
 })();
 
@@ -121,16 +125,32 @@ function setCardTitle(categoryCard, cardNames) {
 function setCardClickEvent(categoryCard) {
   categoryCard.forEach(card => {
     card.addEventListener("click", e => {
-      const pagination = card.childNodes[0].childNodes[1];
-      categoryCard.forEach(card => {
-        const pagination = card.childNodes[0].childNodes[1];
-        pagination.style.display = "none";
-        card.classList.remove("selected_card");
-      });
-      card.classList.add("selected_card");
-      pagination.style.display = "flex";
+      showCard(card, categoryCard);
+      selectPage(event.target, card.childNodes[0].childNodes[1]);
     });
   });
+}
+
+function showCard(card, categoryCard) {
+  const pagination = card.childNodes[0].childNodes[1];
+  categoryCard.forEach(card => {
+    const pagination = card.childNodes[0].childNodes[1];
+    pagination.style.display = "none";
+    card.classList.remove("selected_card");
+  });
+  card.classList.add("selected_card");
+  pagination.style.display = "flex";
+  selectPage(pagination.childNodes[0], pagination.childNodes);
+}
+
+function selectPage(target, tabList) {
+  if (target.tagName === "BUTTON") {
+    tabList.forEach(tab => {
+      tab.style.opacity = "0.5";
+    });
+    target.style.opacity = "1";
+    console.log(target.dataset.page);
+  }
 }
 
 function addPaginationToCard(categoryCard, cardDetails) {
@@ -140,8 +160,12 @@ function addPaginationToCard(categoryCard, cardDetails) {
   categoryCard.forEach(element => {
     let buttons = "";
     for (let i = 0; i < cardDetails[idx].length; ++i)
-      buttons += `<button class="pagination_button" data-page="${count++}"></button>`;
+      buttons += `<button class="pagination_button" id="carousell-page${count}" data-page=${count++}></button>`;
     element.childNodes[0].childNodes[1].innerHTML = buttons;
     ++idx;
   });
+}
+
+function init(categoryCard) {
+  showCard(categoryCard[0], categoryCard);
 }
