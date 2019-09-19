@@ -2,6 +2,7 @@ $cardContainerWidth: 50rem;
 $cardContainerHeight: 12rem;
 $cardsMargin: 0.2rem;
 $resizeImage: 75rem;
+$tabButtonSize: 0.5rem;
 
 @mixin card($background, $margin) {
   background: $background;
@@ -20,11 +21,12 @@ $resizeImage: 75rem;
   width: 100%;
   height: auto;
   font-weight: 300;
+  padding: 0;
   color: #fff;
   left: 0;
   right: 0;
   position: absolute;
-  top: 140px;
+  bottom: 2rem;
   text-align: center;
 }
 
@@ -46,14 +48,26 @@ $resizeImage: 75rem;
       width: 20%;
       height: 100%;
       border: 1px dashed red;
+      .card__pagination {
+        display: none;
+        justify-content: center;
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0.5rem;
+        .pagination_button {
+          width: $tabButtonSize;
+          height: $tabButtonSize;
+          border-radius: 15px;
+          margin: 3px;
+        }
+      }
       @at-root #Ship-card {
         @include card(linear-gradient(30deg, #2c88ae 40%, #00a8e1 85%, #00a8e1 74px), $cardsMargin);
         .Ship-card__clickable {
           @include cardClickable();
           .Ship-card__title {
             @include cardTitle();
-          }
-          .Ship-card__pagination {
           }
         }
       }

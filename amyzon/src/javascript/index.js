@@ -10,8 +10,9 @@ const cardListView = require("./component/cardlist");
   /*카드 만드는 부분*/
   renderCardUi(categoryCard, cardListView, cardNames);
   setCardImage(categoryCard.childNodes, cardImages);
-  setCardClickEvent(categoryCard.childNodes);
   setCardTitle(categoryCard.childNodes, cardNames);
+  addPaginationToCard(categoryCard.childNodes, cardDetails);
+  setCardClickEvent(categoryCard.childNodes);
 })();
 
 function buildMain(main) {
@@ -79,10 +80,26 @@ function setCardTitle(categoryCard, cardNames) {
 function setCardClickEvent(categoryCard) {
   categoryCard.forEach(card => {
     card.addEventListener("click", e => {
-      categoryCard.forEach(item => {
-        item.classList.remove("selected_card");
+      const pagination = card.childNodes[0].childNodes[1];
+      categoryCard.forEach(card => {
+        const pagination = card.childNodes[0].childNodes[1];
+        pagination.style.display = "none";
+        card.classList.remove("selected_card");
       });
       card.classList.add("selected_card");
+      pagination.style.display = "flex";
     });
+  });
+}
+
+function addPaginationToCard(categoryCard, cardDetails) {
+  let idx = 0;
+  let count = 1;
+  if (categoryCard.length !== cardDetails.length) return false;
+  categoryCard.forEach(element => {
+    let buttons = "";
+    for (let i = 0; i < cardDetails[idx].length; ++i)
+      buttons += `<button class="pagination_button" data-page="${count++}"></button>`;
+    element.childNodes[0].childNodes[1].innerHTML = buttons;
   });
 }
