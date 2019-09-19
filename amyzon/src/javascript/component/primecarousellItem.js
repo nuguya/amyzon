@@ -1,4 +1,4 @@
-const primeCarousellItem = (data, count) => {
+const primeCarousellItemView = (data, count) => {
   return `<li class="primecarousell__item" id="prime_item${count}">
   <div class="prime__section">
     <div class="prime__section__title">${data.title}</div>
@@ -10,4 +10,4 @@ const primeCarousellItem = (data, count) => {
 </li>`;
 };
 
-module.exports = primeCarousellItem;
+module.exports = primeCarousellItemView;

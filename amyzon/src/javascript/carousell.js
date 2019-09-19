@@ -13,7 +13,7 @@ class Carousell {
     this.container = container;
     this.itemList = itemList;
     this.init();
-    this.config(rotateConfig, 1);
+    this.config(rotateConfig, duration);
     this.intervalId = undefined;
     this.sleepCheckId = undefined;
   }
@@ -63,6 +63,10 @@ class Carousell {
 
   moveNext() {
     if (this.Istransition) return;
+    this.foward();
+  }
+
+  foward() {
     this.offset -= this.itemListWidth;
     this.move();
     this.location++;
@@ -75,8 +79,7 @@ class Carousell {
     }
   }
 
-  movePrev() {
-    if (this.Istransition) return;
+  back() {
     this.offset += this.itemListWidth;
     this.move();
     this.location--;
@@ -87,6 +90,11 @@ class Carousell {
         this.location = this.location + this.itemLength;
       }
     }
+  }
+
+  movePrev() {
+    if (this.Istransition) return;
+    this.back();
   }
 
   rotate() {
@@ -118,6 +126,14 @@ class Carousell {
         this.autoSlide();
       }, 10000);
     }
+  }
+
+  getLocation() {
+    return this.location;
+  }
+
+  getLength() {
+    return this.itemLength;
   }
 }
 
