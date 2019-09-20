@@ -26,9 +26,11 @@ const CardSlide = require("./cardslide");
 
   rightButton.addEventListener("click", function() {
     primeCraousell.moveNext();
+    cardSlide.moveNextTab();
   });
   leftButton.addEventListener("click", function() {
     primeCraousell.movePrev();
+    cardSlide.movePrevTap();
   });
 })();
 

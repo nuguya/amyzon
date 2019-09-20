@@ -7,6 +7,9 @@ class CardSlide {
     this.cardDetails = cardsData[2];
     this.carousell = carousell;
     this.currentCard = 0;
+    this.currentTab = 1;
+    this.offsetTab = 1;
+    this.prevIndex = 1;
   }
 
   render(target, component) {
@@ -62,10 +65,32 @@ class CardSlide {
   setCardClickEvent(cards) {
     cards.forEach(card => {
       card.addEventListener("click", event => {
-        this.showCard(card, cards);
-        this.currentCard = card.dataset.card;
-        let tabContainer = card.childNodes[0].childNodes[1];
-        this.selectTab(event.target, tabContainer.childNodes);
+        //this.selectTab(event.target, this.tabContainer);
+        if (event.target.tagName === "BUTTON") {
+          this.prevTab = this.currentTab;
+          this.currentTab = parseInt(event.target.dataset.page);
+          let distance = this.currentTab - this.prevTab;
+          if (distance > 0) {
+            this.currentTab = this.prevTab;
+            for (let i = 0; i < distance; ++i) {
+              this.moveNextTab();
+            }
+            this.carousell.moveFowardTo(distance);
+          } else {
+            this.currentTab = this.prevTab;
+            for (let i = 0; i < Math.abs(distance); ++i) {
+              this.movePrevTap();
+            }
+            this.carousell.moveBackTo(Math.abs(distance));
+          }
+        } else {
+          this.prevCard = this.currentCard;
+          this.currentCard = parseInt(card.dataset.card - 1);
+          if (this.currentCard != this.prevCard) {
+            this.showCard(card, cards);
+            this.getDistance();
+          }
+        }
       });
     });
   }
@@ -76,12 +101,11 @@ class CardSlide {
         tab.style.opacity = "0.5";
       });
       target.style.opacity = "1";
-      this.currentTab = target;
     }
   }
 
   showCard(card, cards) {
-    if (this.currentCard == card.dataset.card) return;
+    console.log("asdffs");
     const tabContainer = card.childNodes[0].childNodes[1];
     cards.forEach(card => {
       const tabContainer = card.childNodes[0].childNodes[1];
@@ -90,11 +114,19 @@ class CardSlide {
     });
     card.classList.add("selected_card");
     tabContainer.style.display = "flex";
-    let firstIndexTab = tabContainer.childNodes[0];
-    this.selectTab(firstIndexTab, tabContainer.childNodes, primeCraousell);
+
+    this.tabContainer = tabContainer.childNodes;
+    if (this.firstIndexTab !== undefined) this.prevIndex = this.firstIndexTab.dataset.page;
+    this.firstIndexTab = tabContainer.childNodes[0];
+    let target = this.firstIndexTab.dataset.page;
+
+    this.selectTab(this.firstIndexTab, this.tabContainer);
   }
 
-  moveTab() {}
+  moveTab(tabNum) {
+    const target = document.querySelector(`#carousell-page${tabNum}`);
+    this.selectTab(target, this.tabContainer);
+  }
 
   init(cards) {
     let firstCard = cards[0];
@@ -107,6 +139,59 @@ class CardSlide {
 
   getCurrentTab() {
     return this.currentTab;
+  }
+
+  setCurrentTab(number) {
+    if (number > 17) {
+      number = 1;
+    } else if (number < 1) {
+      number = 17;
+    }
+    this.currentTab = parseInt(number);
+  }
+
+  moveNextTab() {
+    console.log(this.currentTab);
+    if (this.currentTab > 16) {
+      this.currentTab = 0;
+      this.currentCard = -1;
+    }
+    this.offsetTab++;
+    this.setCurrentTab(this.currentTab + 1);
+
+    if (this.tabContainer.length < this.offsetTab) {
+      this.currentCard += 1;
+      this.showCard(this.cards[this.currentCard], this.cards);
+      this.offsetTab = 1;
+    }
+    this.moveTab(this.currentTab);
+  }
+
+  movePrevTap() {
+    if (this.currentTab < 2) {
+      this.currentTab = 18;
+      this.currentCard = 5;
+    }
+    this.offsetTab--;
+    this.setCurrentTab(this.currentTab - 1);
+    if (0 >= this.offsetTab) {
+      this.currentCard -= 1;
+      this.showCard(this.cards[this.currentCard], this.cards);
+      this.offsetTab = this.tabContainer.length;
+    }
+    this.moveTab(this.currentTab);
+  }
+
+  getDistance() {
+    // this.prevTab = this.prevIndex;
+    // this.currentTab = parseInt(this.firstIndexTab.dataset.page);
+
+    const distance = parseInt(this.firstIndexTab.dataset.page) - parseInt(this.prevIndex);
+    this.currentTab = parseInt(this.prevIndex);
+    // console.log(distance);
+    for (let i = 0; i < distance; ++i) {
+      // this.moveNextTab();
+    }
   }
 }
 

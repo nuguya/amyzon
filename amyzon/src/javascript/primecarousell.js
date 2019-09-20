@@ -1,7 +1,7 @@
 const Carousell = require("./carousell");
 
 class PrimeCarousell extends Carousell {
-  constructor(container, itemList, rotateConfig = false, duration = 0.3) {
+  constructor(container, itemList, rotateConfig = false, duration = 0.1) {
     super(container, itemList, rotateConfig, duration);
   }
 
@@ -10,9 +10,12 @@ class PrimeCarousell extends Carousell {
       this.foward();
     }
   }
-  //   findDirection(distance){
 
-  //   }
+  moveBackTo(distance) {
+    for (let i = 0; i < distance; ++i) {
+      this.back();
+    }
+  }
 }
 
 module.exports = PrimeCarousell;
