@@ -1,0 +1,118 @@
+$cardContainerWidth: 50rem;
+$cardContainerHeight: 12rem;
+$cardsMargin: 0.2rem;
+$resizeImage: 75rem;
+$tabButtonSize: 0.5rem;
+
+@mixin card($background, $margin) {
+  background: $background;
+  margin: $margin;
+}
+
+@mixin cardClickable() {
+  width: 100%;
+  height: 80%;
+  background-size: $resizeImage auto, 100% 100%;
+  background-position: -5px 5px;
+  background-repeat: no-repeat;
+}
+
+@mixin cardTitle() {
+  width: 100%;
+  height: auto;
+  font-weight: 300;
+  padding: 0;
+  color: #fff;
+  left: 0;
+  right: 0;
+  position: absolute;
+  bottom: 2rem;
+  text-align: center;
+}
+
+.selected_card {
+  background-size: 1616px auto, 100% 100%;
+  transform: scale(1.3);
+  z-index: 999;
+}
+
+.contents__primecaroushell-container__cards {
+  display: flex;
+  justify-content: center;
+  .contents__primecaroushell-container__category-card {
+    display: flex;
+    width: $cardContainerWidth;
+    height: $cardContainerHeight;
+    .card-category {
+      position: relative;
+      width: 20%;
+      height: 100%;
+      .card__pagination {
+        display: none;
+        justify-content: center;
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0.5rem;
+        .pagination_button {
+          width: $tabButtonSize;
+          height: $tabButtonSize;
+          border-radius: 15px;
+          margin: 3px;
+          color: white;
+          background: white;
+          opacity: 0.5;
+        }
+      }
+      @at-root #Ship-card {
+        @include card(linear-gradient(30deg, #2c88ae 40%, #00a8e1 85%, #00a8e1 74px), $cardsMargin);
+        .Ship-card__clickable {
+          @include cardClickable();
+          .Ship-card__title {
+            @include cardTitle();
+          }
+        }
+      }
+      @at-root #Stream-card {
+        position: relative;
+        @include card(linear-gradient(30deg, #cc0c39 40%, #ff6138 85%, #ff6138 74px), $cardsMargin);
+        .Stream-card__clickable {
+          @include cardClickable();
+          .Stream-card__title {
+            @include cardTitle();
+          }
+        }
+      }
+      @at-root #Shop-card {
+        position: relative;
+        @include card(linear-gradient(30deg, #a90067 40%, #e31f64 85%, #e31f64 74px), $cardsMargin);
+        .Shop-card__clickable {
+          @include cardClickable();
+          .Shop-card__title {
+            @include cardTitle();
+          }
+        }
+      }
+      @at-root #Read-card {
+        position: relative;
+        @include card(linear-gradient(30deg, #008577 40%, #36c2b4 85%, #36c2b4 74px), $cardsMargin);
+        .Read-card__clickable {
+          @include cardClickable();
+          .Read-card__title {
+            @include cardTitle();
+          }
+        }
+      }
+      @at-root #More-card {
+        position: relative;
+        @include card(linear-gradient(30deg, #ff6138 40%, #ffc400 85%, #ffc400 74px), $cardsMargin);
+        .More-card__clickable {
+          @include cardClickable();
+          .More-card__title {
+            @include cardTitle();
+          }
+        }
+      }
+    }
+  }
+}
