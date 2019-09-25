@@ -1,4 +1,4 @@
-require("../../stylesheets/mainpage/style.scss");
+require("../stylesheets/style.scss");
 const cardList = require("./data/data");
 const cardListView = require("./component/cardlist");
 const primeCarousellItemView = require("./component/primecarousellItem");
@@ -9,7 +9,7 @@ const miniCarousell = require("./minicarousell");
 
 (function() {
   const header = document.querySelector(".header");
-  //header.style.backgroundImage = `url("https://t1.daumcdn.net/cfile/tistory/992E8D395B078FF713")`;
+  header.style.backgroundImage = `url("https://t1.daumcdn.net/cfile/tistory/992E8D395B078FF713")`;
   const main = document.querySelector(".main__contents");
   const {
     primeContainer,
@@ -19,6 +19,7 @@ const miniCarousell = require("./minicarousell");
   } = buildMain(main);
   const { cardNames, cardDetails, cardImages } = getCardListValue(cardList);
   const dataList = [cardNames, cardImages, cardDetails];
+  console.log("asdf");
   renderPrimeCarousellUi(primeCarousellContainer, primeCarousellItemView, cardDetails.flat());
   renderMiniCraousell(miniCarousellContainer, miniCarousell);
   const itemList = document.querySelector(".primecarousell__itemlist");
