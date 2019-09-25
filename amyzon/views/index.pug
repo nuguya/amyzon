@@ -1,21 +1,4 @@
-doctype html
-html
-  head
-    block content
-    title= "amayzon"
-    link(rel='stylesheet', href="https://use.fontawesome.com/releases/v5.9.0/css/all.css", integrity="sha384-i1LQnF23gykqWXg6jxC2ZbCbUMxyw5gLZY6UiUS98LYV5unm8GWmfkIS6jqJfb4E", crossorigin="anonymous")
-  body
-    header(class="header")
-      div(class="header__title")
-         h1="amyzon"
-      div(class="header__signin__container")
-        form(class="signin")
-          div(class="signin__contents")
-            p="ID"
-            input(type="text", id="signin_id")
-            p="PASSWORD"
-            input(type="text", id="signin_password")
-            div(class="signin__contents__button")
-              button(type="button",class="signin__contents",id="login_button")
-    main(class="main__contents")
-  script(type='module',src='/javascripts/mainpage/bundle.js')
+extends layout
+
+block content
+
