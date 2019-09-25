@@ -1,0 +1,45 @@
+$imageSize: 15rem;
+$textAreaSize: 25rem;
+$contentsLeftMargin: 5rem;
+
+.contents__minicaroushell__container {
+  display: flex;
+  justify-content: center;
+  border: 1px dotted green;
+}
+
+.minicarousell__container {
+  position: relative;
+  margin: 1em;
+  overflow: hidden;
+  width: $imageSize;
+  height: $imageSize;
+  box-shadow: 2px 2px 3px 2px;
+  .minicarousell__list {
+    display: flex;
+    .minicarousell__item {
+      img {
+        max-width: $imageSize;
+        max-height: $imageSize;
+        height: 100%;
+        vertical-align: top;
+      }
+    }
+  }
+}
+
+.minicarousell__textarea {
+  @extend #mini_leftbtn;
+  max-width: $textAreaSize;
+
+  .minicarousell__navigation {
+    font-weight: bold;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+#mini_leftbtn {
+  margin-left: $contentsLeftMargin;
+}

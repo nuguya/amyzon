@@ -1,0 +1,68 @@
+$carousellContainerWidth: 70rem;
+$carousellContainerHeight: 25rem;
+$carousellSpace: 30rem;
+$backgroundPoistion: -10rem;
+$titleSectionMargin: 2rem;
+.prime-button {
+  border-radius: 25px;
+  background-color: wheat;
+  width: 50px;
+  height: 50px;
+  margin-top: 9rem;
+}
+
+.contents__primecaroushell-container__caroushell {
+  display: flex;
+  margin-top: 5rem;
+  .primecarousell__container {
+    display: flex;
+    overflow: hidden;
+    .primecarousell__itemlist {
+      display: flex;
+
+      .primecarousell__item {
+        position: relative;
+        width: $carousellContainerWidth;
+        height: $carousellContainerHeight;
+        background-position: $backgroundPoistion;
+        background-repeat: no-repeat;
+        background-size: contain;
+        .prime__section {
+          margin: 2rem;
+          position: absolute;
+          display: inline;
+          justify-content: space-between;
+          left: $carousellSpace;
+          white-space: normal;
+          .prime__section__title {
+            display: inline;
+            padding: 0.2rem;
+            margin-top: 2rem;
+            text-align: center;
+            border: solid 2px;
+            color: white;
+            background-color: #00a8e1;
+          }
+          .prime__section__head {
+            font-size: 1.5rem;
+            margin-top: $titleSectionMargin;
+          }
+          .prime__section__body {
+            margin-top: $titleSectionMargin;
+          }
+          .prime__section__tail {
+            margin-top: $titleSectionMargin;
+            font-weight: bold;
+            &:hover {
+              text-decoration: underline;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+#carousell-page1 {
+  opacity: 1;
+}
