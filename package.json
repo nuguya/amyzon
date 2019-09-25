@@ -19,9 +19,7 @@
     "url": "https://github.com/nuguya/membership-amazon/issues"
   },
   "homepage": "https://github.com/nuguya/membership-amazon#readme",
-  "dependencies": {
-    "multer": "^1.4.2"
-  },
+  "dependencies": {},
   "devDependencies": {
     "css-loader": "^3.2.0",
     "node-sass": "^4.12.0",
