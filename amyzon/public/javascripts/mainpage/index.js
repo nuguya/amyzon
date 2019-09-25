@@ -6,18 +6,19 @@ const primeCarousellContainer = require("./component/primecarousellcontainer");
 const PrimeCarousell = require("./primecarousell");
 const CardSlide = require("./cardslide");
 const miniCarousell = require("./minicarousell");
+const usingAPI = require("./data/api");
 
-(function() {
-  const header = document.querySelector(".header");
+(async function() {
   //header.style.backgroundImage = `url("https://t1.daumcdn.net/cfile/tistory/992E8D395B078FF713")`;
   const main = document.querySelector(".main__contents");
+  const api = new usingAPI();
   const {
     primeContainer,
     categoryCard,
     primeCarousellContainer,
     miniCarousellContainer
   } = buildMain(main);
-  const { cardNames, cardDetails, cardImages } = getCardListValue(cardList);
+  const { cardNames, cardDetails, cardImages } = await getCardListValue(api);
   const dataList = [cardNames, cardImages, cardDetails];
   renderPrimeCarousellUi(primeCarousellContainer, primeCarousellItemView, cardDetails.flat());
   renderMiniCraousell(miniCarousellContainer, miniCarousell);
@@ -64,7 +65,8 @@ function buildMain(main) {
   };
 }
 
-function getCardListValue(cardListData) {
+async function getCardListValue(api) {
+  const cardListData = await api.getAllPrimeData();
   const cardNames = [];
   let idx = 0;
   for (let i in cardListData) {

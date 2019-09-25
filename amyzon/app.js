@@ -20,6 +20,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, "static_root")));
 //app.use("/upload", express.static("static_root"));
 
 app.use("/", indexRouter);
