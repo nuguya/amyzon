@@ -1,7 +1,7 @@
-const minicarousellItem = require("./mainpage/component/minicarousell_item.js");
-const minicarousellText = require("./mainpage/component/minicarousell_text.js");
+const minicarousellItem = require("./component/minicarousell_item.js");
+const minicarousellText = require("./component/minicarousell_text.js");
 const Carousell = require("./carousell");
-const { Data, Text } = require("./mainpage/data/mini_data.js.js");
+const { Data, Text } = require("./data/mini_data.js");
 
 const miniCarousell = function() {
   const container = document.querySelector(".minicarousell__container");
