@@ -9,7 +9,8 @@ const miniCarousell = require("./minicarousell");
 const usingAPI = require("./data/api");
 
 (async function() {
-  //header.style.backgroundImage = `url("https://t1.daumcdn.net/cfile/tistory/992E8D395B078FF713")`;
+  const header = document.querySelector(".header");
+  header.style.backgroundImage = `url("https://t1.daumcdn.net/cfile/tistory/992E8D395B078FF713")`;
   const main = document.querySelector(".main__contents");
   const api = new usingAPI();
   const {

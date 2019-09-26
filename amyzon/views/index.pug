@@ -8,14 +8,6 @@ html
     header(class="header")
       div(class="header__title")
          h1="amyzon"
-      div(class="header__signin__container")
-        form(class="signin")
-          div(class="signin__contents")
-            p="ID"
-            input(type="text", id="signin_id")
-            p="PASSWORD"
-            input(type="text", id="signin_password")
-            div(class="signin__contents__button")
-              button(type="button",class="signin__contents",id="login_button")
+      button(class="signin_button" type="button" onclick=`location.href='/login'`)="Sign In"
     main(class="main__contents")
   script(type='module',src='/javascripts/mainpage/bundle.js')

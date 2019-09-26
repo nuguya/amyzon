@@ -1,0 +1,20 @@
+$uniMargin: 0.5rem;
+
+.show_ltems {
+  .show__prime-card {
+    .show__prime-card__container {
+      .show__prime-card__item {
+        display: flex;
+        margin-bottom: $uniMargin;
+        .card_title {
+          width: 10rem;
+          border: solid 1px black;
+        }
+        .card_preview {
+          margin-left: $uniMargin;
+          margin-right: $uniMargin;
+        }
+      }
+    }
+  }
+}

@@ -16,6 +16,9 @@ class Query {
   getAllItems() {
     return "SELECT * FROM PRIME_ITEM";
   }
+  getLoginInfo() {
+    return "SELECT * FROM USERS WHERE uid = ?";
+  }
 }
 
 module.exports = Query;

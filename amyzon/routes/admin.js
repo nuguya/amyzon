@@ -6,6 +6,9 @@ const mysql = require("mysql");
 const dbconfig = require("../config/database");
 const Query = require("../sql/query");
 const connection = mysql.createConnection(dbconfig);
+const redis = require("../config/redis");
+const session = require("express-session");
+const RedisStore = require("connect-redis")(session);
 
 let filename;
 const dmlQuery = new Query();
@@ -26,6 +29,21 @@ const upload = multer({
   storage: storage
 });
 
+router.use(function(req, res, next) {
+  if (req.isAuthenticated()) {
+    switch (req.session.passport.user.usertype) {
+      case "ADMIN":
+        next();
+        break;
+      default:
+        res.redirect("/");
+        break;
+    }
+  } else {
+    res.redirect("/");
+  }
+});
+
 router.get("/", function(req, res, next) {
   res.render("admin");
 });
@@ -35,7 +53,7 @@ router.get("/regist", function(req, res, next) {
   connection.query(dmlQuery.getCards(), function(err, rows) {
     if (err) next(err);
     rows.forEach(card => {
-      cards.push(card.title);
+      cards.push(card);
     });
     res.render("regist", { cards: cards });
   });
