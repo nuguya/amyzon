@@ -14,19 +14,19 @@ html(lang="en")
                 input(type="file" name="imagefile")
             div(class="form-group")
                 h3="Title"
-                input(type="text" class="form-control" value=`${item[0].title}` name="title")
+                input(type="text" class="form-control" name="title" value=`${item[0].title}`)
             div(class="form-group")
                 h3="Head"
-                input(type="text" class="form-control" value=`${item[0].head}` name="head")
+                input(type="text" class="form-control"  name="head" value=`${item[0].head}`)
             div(class="form-group")
                 h3="Body"
-                input(type="text" class="form-control" value=`${item[0].body}` name="body")
+                input(type="text" class="form-control" name="body" value=`${item[0].body}`)
             div(class="form-group")
                 h3="Tail"
-                input(type="text" class="form-control" value=`${item[0].tail}` name="tail")
+                input(type="text" class="form-control" name="tail" value=`${item[0].tail}`)
             div(class="form-group")
                 h3="Link"
-                input(type="text" class="form-control" value=`${item[0].link}` name="link")
+                input(type="text" class="form-control" name="link" value=`${item[0].link}`)
             div(class="form-group")
                 button(type="submit" class="btn btn-primary" formaction=`/admin/update/${item[0].id}`)="수정"
                 button(type="submit" class="btn btn-danger" formaction=`/admin/delete/${item[0].id}`)="삭제"

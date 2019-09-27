@@ -47,6 +47,10 @@ app.use(passport.session()); // 세션 연결
 app.use("/", indexRouter);
 app.use("/admin", adminRouter);
 app.use("/login", loginRouter);
+app.use("/logout", (req, res, next) => {
+  req.logOut();
+  res.redirect("/");
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
