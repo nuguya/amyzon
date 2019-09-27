@@ -6,11 +6,7 @@ const dbconfig = require("../config/database");
 const Query = require("../sql/query");
 const connection = mysql.createConnection(dbconfig);
 const dmlquery = new Query();
-const redis = require("../config/redis");
-const session = require("express-session");
-const RedisStore = require("connect-redis")(session);
 const passport = require("passport");
-const LocalStrategy = require("passport-local").Strategy;
 
 router.use(function(req, res, next) {
   if (req.isAuthenticated()) {

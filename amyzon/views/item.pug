@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        meta(http-equiv="X-UA-Compatible", content="ie=edge")
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+        title Document
+    body
+        img(src=`/${item[0].image_url}` class="img-rounded")
+        <form method="post" enctype="multipart/form-data">
+            div(class="form-group")
+                h3="Image"
+                input(type="file" name="imagefile")
+            div(class="form-group")
+                h3="Title"
+                input(type="text" class="form-control" value=`${item[0].title}` name="title")
+            div(class="form-group")
+                h3="Head"
+                input(type="text" class="form-control" value=`${item[0].head}` name="head")
+            div(class="form-group")
+                h3="Body"
+                input(type="text" class="form-control" value=`${item[0].body}` name="body")
+            div(class="form-group")
+                h3="Tail"
+                input(type="text" class="form-control" value=`${item[0].tail}` name="tail")
+            div(class="form-group")
+                h3="Link"
+                input(type="text" class="form-control" value=`${item[0].link}` name="link")
+            div(class="form-group")
+                button(type="submit" class="btn btn-primary" formaction=`/admin/update/${item[0].id}`)="수정"
+                button(type="submit" class="btn btn-danger" formaction=`/admin/delete/${item[0].id}`)="삭제"
+        </form>

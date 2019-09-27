@@ -4,6 +4,7 @@ html(lang="en")
         meta(charset="UTF-8")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
         meta(http-equiv="X-UA-Compatible", content="ie=edge")
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
     body
         main(class="regist__main")
             div(class="show_ltems")
@@ -15,36 +16,60 @@ html(lang="en")
                                 div(class="card_title")=cards[i].title
                                 button(class="card_preview" type="button" onclick=`location.href='/${cards[i].image_url}'`)="이미지보기"                    
                                 button(class="modify_button" type="button")="수정"
+                div(class="show__prime-item")
+                    h2="prime-item"
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>PK</th>
+                                <th>Title</th>
+                                <th>Category</th>
+                                <th>수정</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            - for(let i in items)
+                                tr
+                                    td
+                                    td=items[i].id
+                                    td=items[i].title
+                                    td=items[i].category
+                                    td
+                                        button(type="button" class="btn btn-primary" onclick=`location.href='/admin/item/${items[i].id}'`)="수정"
+                        </tbody>
+                    </table>
             div(class="add_items")
                 div(class="add__primecard")
                     h2="prime-card"
                     form(class="primecardform" method="post" enctype="multipart/form-data")
-                        div(class="primecardform__inputconatiner")
-                            input(type="text" name="title" class="primecardform_input" id="primecardform_input-title")
-                        div(class="primecardform__inputconatiner")
+                        div(class="primecardform__inputconatiner form-group")
+                            input(type="text" name="title" class="primecardform_input form-control" id="primecardform_input-title")
+                        div(class="primecardform__inputconatiner form-group")
                             input(type="file" name="imagefile" class="primecardform_input" id="primecardform_input-image" )
-                        div(class="primecardform__submit")
-                            input(type="submit" value="등록" formaction="/admin/regist/primecard")
+                        div(class="primecardform__submit form-group")
+                            button(type="submit" class="btn btn-default" formaction="/admin/regist/primecard")="등록"
                 div(class="add__primeitem")
                     h2="prime-item"
                     form(class="primeitemform" action="/admin/regist/primeitem" method="post" enctype="multipart/form-data")
-                        div(class="primeitemform__inputconatiner")
-                            input(type="file" name="imagefile" class="primeitemform_input" id="primeitemform_input-image")
-                        div(class="primeitemform__inputconatiner")
-                            input(type="text" name="title" class="primeitemform_input" id="primeitemform_input-title")
-                        div(class="primeitemform__inputconatiner")
-                            input(type="text" name="head" class="primeitemform_input" id="primeitemform_input-head")
-                        div(class="primeitemform__inputconatiner")
-                            input(type="text" name="body" class="primeitemform_input" id="primeitemform_input-body")
-                        div(class="primeitemform__inputconatiner")
-                            input(type="text" name="tail" class="primeitemform_input" id="primeitemform_input-tail")
-                        div(class="primeitemform__inputconatiner")
-                            input(type="text" name="link" class="primeitemform_input" id="primeitemform_input-link")
-                        div(class="primeitemform__inputconatiner")
-                            select(name="card" class="primeitemform_input" id="primeitemform_input-card")
-                                - for(var i=0; i<cards.length;++i)
-                                    option(value=cards[i].title)=cards[i].title
-                        div(class="primeitemform__submit")
-                            input(type="submit" value="등록")
+                            div(class="primeitemform__inputconatiner form-group")
+                                input(type="file" name="imagefile" class="primeitemform_input" id="primeitemform_input-image")
+                            div(class="primeitemform__inputconatiner form-group")
+                                input(type="text" name="title" class="primeitemform_input form-control" id="primeitemform_input-title")
+                            div(class="primeitemform__inputconatiner form-group")
+                                input(type="text" name="head" class="primeitemform_input form-control" id="primeitemform_input-head")
+                            div(class="primeitemform__inputconatiner form-group")
+                                input(type="text" name="body" class="primeitemform_input form-control" id="primeitemform_input-body")
+                            div(class="primeitemform__inputconatiner form-group")
+                                input(type="text" name="tail" class="primeitemform_input form-control" id="primeitemform_input-tail")
+                            div(class="primeitemform__inputconatiner form-group")
+                                input(type="text" name="link" class="primeitemform_input form-control" id="primeitemform_input-link")
+                            div(class="primeitemform__inputconatiner form-group")
+                                select(name="card" class="primeitemform_input form-control" id="primeitemform_input-card")
+                                    - for(var i=0; i<cards.length;++i)
+                                        option(value=cards[i].title)=cards[i].title
+                            div(class="primeitemform__submit form-group")
+                                button(type="submit" class="btn btn-default")="등록"
+    
                 div(calss="add__mini")
     script(type='module',src='/javascripts/adminpage/regist/registbundle.js')

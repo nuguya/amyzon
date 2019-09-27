@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        meta(http-equiv="X-UA-Compatible", content="ie=edge")
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+        title Document
+    body
+        header.showuser__header
+            h2="사용자조회"
+        <table class="table table-striped showuser_table">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>UID</th>
+                    <th>USERNAME</th>
+                    <th>USERTYPE</th>
+                    <th>권한주기</th>
+                </tr>
+            </thead>
+            <tbody>
+                - var count=0
+                - for(let i in users)
+                    <tr>
+                        th=count++
+                        td=users[i].uid
+                        td=users[i].username
+                        td=users[i].usertype
+                        td
+                            if users[i].usertype=="ADMIN"
+                                <button type="button" class="btn btn-danger">권한삭제</button>
+                            else
+                                <button type="button" class="btn btn-primary">권한부여</button>
+                    </tr>
+            </tbody>
+        </table>
+    script(type='module',src='/javascripts/adminpage/showuser/showuserbundle.js')
+    

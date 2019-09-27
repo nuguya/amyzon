@@ -45,7 +45,8 @@ router.use(function(req, res, next) {
 });
 
 router.get("/", function(req, res, next) {
-  res.render("admin");
+  const username = req.session.passport.user.username;
+  res.render("admin", { username: username });
 });
 
 router.get("/regist", function(req, res, next) {
@@ -55,7 +56,17 @@ router.get("/regist", function(req, res, next) {
     rows.forEach(card => {
       cards.push(card);
     });
-    res.render("regist", { cards: cards });
+    connection.query(dmlQuery.getItemsInfo(), function(err, rows) {
+      if (err) next(err);
+      res.render("regist", { cards: cards, items: rows });
+    });
+  });
+});
+
+router.get("/item/:id", function(req, res, next) {
+  connection.query(dmlQuery.getItemInfoById(), [req.params.id], function(err, rows) {
+    if (err) next(err);
+    res.render("item", { item: rows });
   });
 });
 
@@ -69,7 +80,18 @@ router.post("/regist/primecard", upload.single("imagefile"), function(req, res, 
   res.redirect("/admin/regist");
 });
 
+router.post("/update/:id", function(req, res, next) {
+  console.log(req.body);
+  res.send("sdaf");
+});
+
+router.post("/delete/:id", function(req, res, next) {
+  console.log(req.body);
+  res.render("admin");
+});
+
 router.post("/regist/primeitem", upload.single("imagefile"), function(req, res, next) {
+  console.log(req.body);
   const file = req.file;
   const imageFileName = filename;
   const item = {
@@ -91,8 +113,28 @@ router.post("/regist/primeitem", upload.single("imagefile"), function(req, res, 
   res.redirect("/admin/regist");
 });
 
+router.get("/showuser", function(req, res, next) {
+  connection.query(dmlQuery.getAllUserInfo(), function(err, rows) {
+    res.render("showuser", { users: rows });
+  });
+});
+
+router.post("/showuser", function(req, res, next) {
+  if (req.body.usertype === "ADMIN") {
+    connection.query(dmlQuery.updateUsersAuth(), ["NORMAL", req.body.uid], function(err, rows) {
+      if (err) next();
+      res.json({ res: "NORMAL" });
+    });
+  } else {
+    connection.query(dmlQuery.updateUsersAuth(), ["ADMIN", req.body.uid], function(err, rows) {
+      if (err) next();
+      res.json({ res: "ADMIN" });
+    });
+  }
+});
+
 router.use(function(err, req, res, next) {
-  res.render(error, { message: err.message });
+  res.render(err, { message: err.message });
 });
 
 module.exports = router;

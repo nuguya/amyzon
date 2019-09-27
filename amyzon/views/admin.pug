@@ -6,9 +6,9 @@ html
         main(class="admin__main")
             div(class="main__info")
                 div(class="admin_info")
-                    p="관리자:"
+                    p="관리자: "+username
                 div(class="time_info")
             div(calss="main__navigation")
-                button(type="button" class="navi_button",id="lookup_user" )="사용자조회"
+                button(type="button" class="navi_button",id="lookup_user" onclick="location.href='/admin/showuser'")="사용자조회"
                 button(type="button" class="navi_button",id="regist_item" onclick="location.href='/admin/regist'")="아이템등록"
     script(type='module',src='/javascripts/adminpage/index/adminbundle.js')

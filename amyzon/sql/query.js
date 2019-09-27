@@ -13,11 +13,23 @@ class Query {
   getItemsInCard() {
     return "SELECT * FROM PRIME_ITEM WHERE category = ?";
   }
+  getItemInfoById() {
+    return "SELECT * FROM PRIME_ITEM WHERE id = ?";
+  }
   getAllItems() {
     return "SELECT * FROM PRIME_ITEM";
   }
+  getItemsInfo() {
+    return "SELECT id,title,category FROM PRIME_ITEM";
+  }
   getLoginInfo() {
     return "SELECT * FROM USERS WHERE uid = ?";
+  }
+  getAllUserInfo() {
+    return "SELECT uid,username,usertype FROM USERS";
+  }
+  updateUsersAuth() {
+    return "UPDATE USERS SET usertype = ? WHERE uid = ?";
   }
 }
 
