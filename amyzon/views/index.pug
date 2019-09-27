@@ -7,8 +7,10 @@ html
   body
     header(class="header")
       div(class="header__title")
-         h1="amyzon"
-      button(class="signin_button" type="button" onclick=`location.href='/login'`)="Sign In"
-      button(class="signout_button" type="button" onclick=`location.href='/logout'`)="logOut"
+      if res=="logout"
+        button(class="signin_button" type="button" onclick=`location.href='/login'`)="Login"
+      else
+        button(class="signin_button" type="button" onclick=`location.href='/logout'`)="Logout"
+        button(class="admin_button" type="button" onclick=`location.href='/admin'`)="GO TO ADMIN PAGE"
     main(class="main__contents")
   script(type='module',src='/javascripts/mainpage/bundle.js')

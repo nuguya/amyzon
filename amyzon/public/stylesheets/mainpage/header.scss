@@ -3,17 +3,21 @@
   height: 260px;
   .header__title {
     position: relative;
-    text-align: center;
-    color: black;
-    width: auto;
   }
   .signin_button {
     position: absolute;
-    top: 170px;
+    top: 155px;
     left: 22px;
     width: 280px;
     height: 50px;
+    font-size: 2rem;
     color: #516033;
     background: #ffa823;
+  }
+  .admin_button {
+    position: absolute;
+    top: 90px;
+    left: 25px;
+    border: 1px solid aliceblue;
   }
 }

@@ -30,7 +30,8 @@ function getCards() {
 }
 
 router.get("/", function(req, res, next) {
-  res.render("index", { title: "Express" });
+  if (req.isAuthenticated()) res.render("index", { res: "login" });
+  else res.render("index", { res: "logout" });
 });
 
 router.get("/prime_allitems", async function(req, res, next) {
